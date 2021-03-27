@@ -1,0 +1,241 @@
+{% extends 'portfolio_base.html'%} 
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<button onclick="topFunction()" id="btnGoTop" title="Go to top" class="icon-chevron-up">
+  <i class="bi bi-arrow-up-circle-fill display-6"></i>
+</button>
+<!-- Sidebar Menu -->
+<div class="responsive-nav">
+  <i class="fa fa-bars" id="menu-toggle"></i>
+  <div id="menu" class="menu">
+    <i class="fa fa-times" id="menu-close"></i>
+    <div class="nav-container">
+      <div class="image">
+        <a href="#"><img src="{{ user.profile_pic.url }}" alt="" /></a>
+      </div>
+      <div class="author-content">
+        <h4 style="color: beige">{{ user.name }}</h4>
+        <span>{{ user.profession }}</span>
+      </div>
+      <nav class="main-nav" role="navigation">
+        <ul class="main-menu">
+          <li><a href="#home" data-scroll="home">Home</a></li>
+          <li><a href="#skills" data-scroll="skills">Skills</a></li>
+          <li><a href="#education" data-scroll="education">Education</a></li>
+          <li><a href="#works" data-scroll="works">My Works</a></li>
+          <li><a href="#experiense" data-scroll="experiense">Experiense</a></li>
+          <li><a href="#contact_me" data-scroll="experiense">Contact Me</a></li>
+
+        </ul>
+      </nav>
+      <div class="social-network">
+        <ul class="soial-icons">
+          {% if social.linkedin%}
+          <li>
+            <a href="{{social.linkedin}}"><i class="fa fa-linkedin"></i></a>
+          </li>
+          {% endif %} {% if social.github%}
+          <li>
+            <a href="{{social.github}}"><i class="fa fa-dribbble"></i></a>
+          </li>
+          {% endif %} {% if social.facebook%}
+          <li>
+            <a href="{{social.facebook}}"><i class="fa fa-facebook"></i></a>
+          </li>
+          {% endif %} {% if social.instagram%}
+          <li>
+            <a href="{{social.instagram}}"><i class="fa fa-rss"></i></a>
+          </li>
+          {% endif %} {% if social.whatsapp%}
+          <li>
+            <a href="{{social.whatsapp}}"><i class="fa fa-twitter"></i></a>
+          </li>
+          {% endif %}
+          <li>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- sidebar menu end -->
+<div class="section">
+  <!-- home -->
+  <section id="home" data-anchor="home">
+    <br />
+    <div class="row">
+      <div class="col mx-auto my-auto text-white p-3 rounded-lg shadow"
+        style="background-color: rgba(13, 32, 31, 0.63)">
+        <h3 class="text-center text-monospace">{{ user.bio_heading }}</h3>
+        <!-- small discription about your self -->
+        <p>{{ user.bio }}</p>
+      </div>
+    </div>
+  </section>
+  <!-- home end -->
+  <!-- skills -->
+  <section id="skills">
+    <br /><br />
+    <br /><br />
+    <h2>Iam Good In.....</h2>
+    <h4 class="blockquote">that describes who am i</h4>
+    <div class="row mt-5 text-center">
+      {% for skill in skills %}
+      <div class="col-lg-3 col-md-6 skill-img img-thumbnail mb-2 shadow">
+        <img src="{{ skill.image.url }}" alt="Skill name" class="img-fluid" />
+        <h4>{{ skill.heading}}</h4>
+        <p>{{ skill.short_description}}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  <!-- skills end -->
+  <!-- education -->
+  <section id="education" data-anchor="education">
+    <br /><br />
+    <br /><br />
+    <h2>Education</h2>
+    <div class="row">
+      {% for edu in education%}
+      <div class="col-md-3 p-3 bg-white shadow">
+        <h4>{{ edu.qualification }}</h4>
+        <h6>{{ edu.institute }}</h6>
+        {% if edu.year_start or education.year_end %}
+        <strong>{{ edu.year_start|date:"Y" }} to {{ edu.year_end|date:"Y" }}</strong>
+        {% endif%}
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  <!-- education end -->
+  <!-- works -->
+  <section id="works" data-anchor="works">
+    <br /><br />
+    <br /><br />
+    <h3 class="text-center">My Works</h3>
+    <div class="row">
+      {% for work in works%}
+      <div class="col-lg-3 col-md-6 overflow-hidden p-3 mb-3 work-card shadow">
+        <div style="max-height: 150px; overflow: hidden">
+          <a href="{{ work.website_url }}" target="blank">
+            <img class="img-fluid img-shade" src="{{ work.work_img.url }}" alt="work image"
+              onclick="expandImg(this);" />
+          </a>
+        </div>
+        <div class="work-foot text-center p-3">
+          <h5 class="fw-bolder">{{work.work_title}}</h5>
+          <p class="small">{{work.short_discription}}</p>
+          {% if work.git_url %}
+          <a href="{{ work.git_url }}" class="link-primary text-decoration-none">work url</a>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <!-- expanded image section-->
+    <div class="expand" id="ex">
+      <br />
+      <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+      <img id="expandedImg" style="width: 90%" />
+      <div id="imgtext"></div>
+    </div>
+  </section>
+  <!-- works end -->
+  <!-- experiense -->
+  <section id="experiense" data-anchor="experiense">
+    <br /><br />
+    <br /><br />
+    <h2>Experiense</h2>
+    <div class="row">
+      {%for exp in experience%}
+      <div class="col-md-4 p-3 bg-white shadow">
+        <div>
+          <h4>{{exp.position}}</h4>
+          <h6>{{exp.company_name}}</h6>
+        </div>
+        <strong>{{exp.year_start|date:"Y"}} to {{exp.year_end|date:"Y" }}</strong>
+        <p>{{ experience.short_description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  <!-- experiense end -->
+  <!-- contactme -->
+  <section id="contact_me" data-anchor="contact_me">
+    <br><br>
+    <h2>Contact Me</h2>
+    <br>
+    <form method="POST" action="{% url 'contact_me' %}" class="">
+      {% csrf_token %}
+      {{ conatct_form|crispy }}
+      <button type="submit" class=" btn btn-primary " style="display: block; margin: 0 auto;">Submit</button>
+    </form>
+  </section>
+  <!-- contactme end -->
+
+  <br /><br />
+  <br /><br />
+  <!-- Footer -->
+  <footer class="bg-light text-center text-lg-start">
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+      © 2021 Copyright:
+      <a class="text-dark" href="">Akshay-solo coder</a>
+    </div>
+    <!-- Copyright end-->
+  </footer>
+  <!-- Footer end-->
+</div>
+
+
+<script>
+  //Get the button
+  var mybutton = document.getElementById("btnGoTop");
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function () {
+    scrollFunction();
+  };
+  function scrollFunction() {
+    if (
+      document.body.scrollTop > 20 ||
+      document.documentElement.scrollTop > 20
+    ) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  }
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+
+
+  // hide side bar when click outside
+  $(".section").click(function () {
+    $("#menu").removeClass("open");
+  });
+  //whwn user scrolls  change active state of navbars 
+  $(window).scroll(function () {
+      var windscroll = $(window).scrollTop();
+      if (windscroll >= 20) {
+        // $('nav').addClass('fixed');
+        $(".section section").each(function (i) {
+          if ($(this).position().top <= windscroll + 100) {
+            $(".main-menu li").removeClass("active");
+            $(".main-menu li").eq(i).addClass("active");
+          }
+        });
+      } else {
+        // $('nav').removeClass('fixed');
+        $(".main-menu li.active").removeClass("active");
+        $(".main-menu li:first").addClass("active");
+      }
+    })
+    .scroll();
+</script>
+<script src="{% static 'assets/js/custom.js' %}"></script>
+{% endblock %}
