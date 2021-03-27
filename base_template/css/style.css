@@ -10,7 +10,8 @@ body {
   background-size: cover;
   background-position: top;
   background-attachment: fixed;
-  font-family: "Lato", sans-serif;
+  /* font-family: "Lato", sans-serif; */
+  font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
 }
 /* Basic */
 a,
@@ -385,9 +386,9 @@ html {
 /* skills section */
 #skills img {
   cursor: pointer;
-  border-radius: 53px 24px 24px 24px;
-  -webkit-border-radius: 53px 24px 24px 24px;
-  -moz-border-radius: 53px 24px 24px 24px;
+  /* border-radius: 53px 24px 24px 24px; */
+  /* -webkit-border-radius: 53px 24px 24px 24px; */
+  /* -moz-border-radius: 53px 24px 24px 24px; */
   filter: grayscale(30%);
 }
 .skill-img:hover {
@@ -411,11 +412,11 @@ html {
 }
 .work-foot {
   position: relative;
-  color: rgb(255, 255, 255);
-  text-shadow: 1px 1px 2px #000000;
+  /* color: rgb(255, 255, 255); */
+  /* text-shadow: 1px 1px 2px #000000; */
   overflow: auto;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  /* background: rgba(0, 0, 0, 0.7); */
   /* background: rgba(0, 0, 0, 0.7); */
 
 }

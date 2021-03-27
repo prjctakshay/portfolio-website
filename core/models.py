@@ -8,6 +8,8 @@ class User(models.Model):
     profession = models.CharField(max_length=100)
     bio_heading = models.CharField(max_length=200)
     bio = models.TextField(max_length=400)
+    def __str__(self):
+        return self.name
 
 
 # social media links contain this table
@@ -19,11 +21,14 @@ class SocialMedias(models.Model):
     whatsapp = models.URLField(null=True,blank=True)
 
 
-# skills details contain thhis table
+
+# skills details contain this table
 class Skills(models.Model):
     image = models.ImageField(upload_to='user/skills', null=True, blank=True)
-    heading = models.CharField(max_length=100)
-    short_description = models.TextField(max_length=500)
+    heading = models.CharField(max_length=100,null=True)
+    short_description = models.TextField(max_length=500,null=True)
+    def __str__(self):
+        return self.heading
 
 
 # education details contain this table
@@ -33,6 +38,8 @@ class Education(models.Model):
     year_start = models.DateField(auto_now=False)
     year_end = models.DateField(auto_now=False)
     mark = models.CharField(max_length=100)
+    def __str__(self):
+        return self.qualification
 
 
 # works details contain this table
@@ -42,6 +49,8 @@ class Works(models.Model):
     short_discription = models.TextField(max_length=300)
     git_url = models.URLField(null=True)
     website_url = models.URLField(null=True)
+    def __str__(self):
+        return self.work_title
 
 
 # experience details contain this table
@@ -51,6 +60,8 @@ class Experience(models.Model):
     year_start = models.DateField(auto_now=True)
     year_end = models.DateField(auto_now=True, null=True)
     short_description = models.TextField(max_length=500)
+    def __str__(self):
+        return self.position
     
 # contact me details
 class ContactMe(models.Model):
@@ -60,3 +71,5 @@ class ContactMe(models.Model):
     # phone_num = PhoneNumberField(null=True)
     phone_num = models.CharField(max_length=12)
     time = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return self.name

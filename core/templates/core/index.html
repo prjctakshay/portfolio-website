@@ -38,7 +38,7 @@
           </li>
           {% endif %} {% if social.github%}
           <li>
-            <a href="{{social.github}}"><i class="fa fa-dribbble"></i></a>
+            <a href="{{social.github}}"><i class="fa fa-github"></i></a>
           </li>
           {% endif %} {% if social.facebook%}
           <li>
@@ -46,16 +46,13 @@
           </li>
           {% endif %} {% if social.instagram%}
           <li>
-            <a href="{{social.instagram}}"><i class="fa fa-rss"></i></a>
+            <a href="{{social.instagram}}"><i class="fa fa-instagram"></i></a>
           </li>
           {% endif %} {% if social.whatsapp%}
           <li>
-            <a href="{{social.whatsapp}}"><i class="fa fa-twitter"></i></a>
+            <a href="{{social.whatsapp}}"><i class="fa fa-whatsapp"></i></a>
           </li>
           {% endif %}
-          <li>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-          </li>
         </ul>
       </div>
     </div>
@@ -125,11 +122,11 @@
               onclick="expandImg(this);" />
           </a>
         </div>
-        <div class="work-foot text-center p-3">
+        <div class="work-foot  p-3">
           <h5 class="fw-bolder">{{work.work_title}}</h5>
           <p class="small">{{work.short_discription}}</p>
           {% if work.git_url %}
-          <a href="{{ work.git_url }}" class="link-primary text-decoration-none">work url</a>
+          <a href="{{ work.git_url }}" class="link-primary text-decoration-none text-center">work url</a>
           {% endif %}
         </div>
       </div>
@@ -137,7 +134,7 @@
     </div>
     <!-- expanded image section-->
     <div class="expand" id="ex">
-      <br />
+      <br/>
       <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
       <img id="expandedImg" style="width: 90%" />
       <div id="imgtext"></div>
@@ -183,6 +180,31 @@
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
       © 2021 Copyright:
       <a class="text-dark" href="">Akshay-solo coder</a>
+            <div class="social-network">
+        <ul class="soial-icons">
+          {% if social.linkedin%}
+          <li>
+            <a href="{{social.linkedin}}"><i class="fa fa-linkedin"></i></a>
+          </li>
+          {% endif %} {% if social.github%}
+          <li>
+            <a href="{{social.github}}"><i class="fa fa-github"></i></a>
+          </li>
+          {% endif %} {% if social.facebook%}
+          <li>
+            <a href="{{social.facebook}}"><i class="fa fa-facebook"></i></a>
+          </li>
+          {% endif %} {% if social.instagram%}
+          <li>
+            <a href="{{social.instagram}}"><i class="fa fa-instagram"></i></a>
+          </li>
+          {% endif %} {% if social.whatsapp%}
+          <li>
+            <a href="{{social.whatsapp}}"><i class="fa fa-whatsapp"></i></a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
     </div>
     <!-- Copyright end-->
   </footer>
